@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import routes from './router/router';
 import { useAuthToken } from './store/authStore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Layout from './layout/Layout';
-import AppRoutes from './router/routes';
 import ToasterContext from './libs/ToasterContext';
 import { webSocketInstance } from './services/websocketInstance';
 
@@ -14,6 +13,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+const router = createBrowserRouter(routes);
 
 const App = () => {
   const token = useAuthToken();
@@ -34,12 +35,8 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <Layout>
-          <ToasterContext />
-          <AppRoutes />
-        </Layout>
-      </Router>
+      <RouterProvider router={router} />
+      <ToasterContext />
     </QueryClientProvider>
   );
 };
