@@ -21,22 +21,24 @@ import {
   EditUserInterface,
 } from '@/types/user';
 
-// TODO: url(params) object response 가능하도록 바꾸기
 export const apiMethods = {
   search: {
     get: {
       school: (keyword: string) => ({
-        url: `schools?keyword=${keyword}`,
+        url: 'schools',
+        params: { keyword },
       }),
       major: (keyword: string) => ({
-        url: `majors?keyword=${keyword}`,
+        url: 'majors',
+        params: { keyword },
       }),
     },
   },
   mail: {
     get: {
       duplicate: (mail: string) => ({
-        url: `members/mail/duplicate?mail=${mail}`,
+        url: 'members/mail/duplicate',
+        params: { mail },
       }),
     },
     post: {
@@ -66,7 +68,8 @@ export const apiMethods = {
     },
     delete: {
       delete: (imageUrl: string) => ({
-        url: `images?imageUrl=${imageUrl}`,
+        url: 'images',
+        params: { imageUrl },
       }),
     },
   },
@@ -134,10 +137,28 @@ export const apiMethods = {
         keyword,
         majorCategory,
       }: RequestHelpPostListInterface) => ({
-        url: `posts?boardType=NEED_HELP&majorCategory=${majorCategory}&keyword=${keyword}&page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: 'posts',
+        params: {
+          boardType: 'NEED_HELP',
+          majorCategory,
+          keyword,
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
       free: ({ page, size, sortBy, direction, keyword, tag }: RequestFreePostListInterface) => ({
-        url: `posts?boardType=FREE&tag=${tag}&keyword=${keyword}&page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: 'posts',
+        params: {
+          boardType: 'FREE',
+          tag,
+          keyword,
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
       weeklyhot: () => ({
         url: `posts/weeklyhot`,
@@ -146,10 +167,12 @@ export const apiMethods = {
         url: `posts/dailyhot`,
       }),
       myPosts: (page: number, boardType: string) => ({
-        url: `posts/my?page=${page}&boardType=${boardType}`,
+        url: 'posts/my',
+        params: { page, boardType },
       }),
       myBookmarks: (page: number, boardType: string) => ({
-        url: `posts/bookmark?page=${page}&boardType=${boardType}`,
+        url: 'posts/bookmarks',
+        params: { page, boardType },
       }),
     },
     post: {
@@ -193,7 +216,13 @@ export const apiMethods = {
         sortBy = 'createAt',
         direction = 'DESC',
       ) => ({
-        url: `posts/${postId}/replies?page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: `posts/${postId}/replies`,
+        params: {
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
       myReplies: (
         page: number,
@@ -202,7 +231,14 @@ export const apiMethods = {
         sortBy = 'createAt',
         direction = 'DESC',
       ) => ({
-        url: `replies/my?page=${page}&size=${size}&boardType=${boardType}&sortBy=${sortBy}&direction=${direction}`,
+        url: 'replies/my',
+        params: {
+          page,
+          size,
+          boardType,
+          sortBy,
+          direction,
+        },
       }),
     },
     post: {
@@ -233,10 +269,22 @@ export const apiMethods = {
   chat: {
     get: {
       chatrooms: ({ page }: RequestChatRoomListInterface) => ({
-        url: `chat/rooms?page=${page}&size=10&sortBy=rcm.createAt&direction=DESC`,
+        url: 'chat/rooms',
+        params: {
+          page,
+          size: '10',
+          sortBy: 'rcm.createAt',
+          direction: 'DESC',
+        },
       }),
       messages: ({ roomId, page }: RequestMessageListInterface) => ({
-        url: `chat/rooms/${roomId}/messages?page=${page}&size=10&sortBy=createAt&direction=DESC`,
+        url: `chat/rooms/${roomId}/messages`,
+        params: {
+          page,
+          size: '10',
+          sortBy: 'createAt',
+          direction: 'DESC',
+        },
       }),
     },
     post: {
@@ -273,16 +321,40 @@ export const apiMethods = {
   report: {
     get: {
       postList: ({ page, size, sortBy, direction }: Partial<RequestReportListInterface>) => ({
-        url: `posts/report?page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: 'posts/report',
+        params: {
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
       replyList: ({ page, size, sortBy, direction }: Partial<RequestReportListInterface>) => ({
-        url: `replies/report?page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: 'replies/report',
+        params: {
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
       post: ({ id, page, size, sortBy, direction }: Partial<RequestReportDetailInterface>) => ({
-        url: `posts/${id}/report?page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: `posts/${id}/report`,
+        params: {
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
       reply: ({ id, page, size, sortBy, direction }: Partial<RequestReportDetailInterface>) => ({
-        url: `reports/${id}/report?page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: `replies/${id}/report`,
+        params: {
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
     },
     delete: {
@@ -297,7 +369,14 @@ export const apiMethods = {
   account: {
     get: {
       accountList: ({ keyword, page, size, sortBy, direction }: RequestAccountListInterface) => ({
-        url: `members?keyword=${keyword}&page=${page}&size=${size}&sortBy=${sortBy}&direction=${direction}`,
+        url: 'members',
+        params: {
+          keyword,
+          page,
+          size,
+          sortBy,
+          direction,
+        },
       }),
     },
     delete: {
