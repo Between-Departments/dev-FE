@@ -47,7 +47,6 @@ const useCommentQuery = (postId: number): UseCommentQueryReturnType => {
     getNextPageParam: (lastPage) => lastPage.nextPage,
     initialPageParam: 1,
     staleTime: 1000 * 60 * 1,
-    gcTime: 1000 * 60 * 1,
   });
 
   const moreDataHandler = () => {
