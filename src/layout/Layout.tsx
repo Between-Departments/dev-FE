@@ -1,28 +1,51 @@
 import React from 'react';
-import { useLocation, matchPath } from 'react-router-dom';
-import routes from '@/router/routeConfig';
+import { RouteObject, useLocation, Outlet } from 'react-router-dom';
+import routes from '@/router/router';
 import styled from 'styled-components';
 import { colors } from '../constants/colors';
 import BottomNavBar from './BottomNavBar';
 import FloatingNav from './FloatingNav';
 import GlobalModal from '@/components/public/modal/GlobalModal';
-
-interface LayoutInterface {
-  children: React.ReactNode;
+interface ExtendedRouteObject extends Omit<RouteObject, 'children'> {
+  meta?: {
+    hideNavBar?: boolean;
+    hideFloatNav?: boolean;
+  };
+  children?: ExtendedRouteObject[];
 }
 
-const Layout = ({ children }: LayoutInterface) => {
+const findRouteByPath = (
+  path: string,
+  routes: ExtendedRouteObject[],
+): ExtendedRouteObject | null => {
+  for (const route of routes) {
+    const routePathRegex = new RegExp('^' + route.path?.replace(/:\w+/g, '\\w+') + '$');
+    if (routePathRegex.test(path)) {
+      return route;
+    }
+    // 중첩된 라우트가 있는 경우
+    if (route.children) {
+      const nestedRoute = findRouteByPath(path, route.children);
+      if (nestedRoute) {
+        return nestedRoute;
+      }
+    }
+  }
+  return null;
+};
+
+const Layout = () => {
   const location = useLocation();
-  const currentRoute = routes.find((route) => matchPath(route.path, location.pathname));
+  const currentRoute = findRouteByPath(location.pathname, routes);
   const hideBottomNav = currentRoute?.meta?.hideNavBar || false;
   const hideFloatNav = currentRoute?.meta?.hideFloatNav || false;
 
   return (
     <PageLayout>
       <PageContentLayout $hideBottomNav={hideBottomNav}>
-        {children}
-        {!hideBottomNav && <BottomNavBar />}
-        {!hideFloatNav && <FloatingNav />}
+        <Outlet />
+        {hideBottomNav === false && <BottomNavBar />}
+        {hideFloatNav === false && <FloatingNav />}
       </PageContentLayout>
       <GlobalModal />
     </PageLayout>

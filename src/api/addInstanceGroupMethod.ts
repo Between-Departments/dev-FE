@@ -24,6 +24,7 @@ function addInstance(
   return Object.fromEntries(Object.entries(instanceObjectAPI).map(instanceMap));
 }
 
+// instance 그룹화
 export function addInstanceGroup(
   instance: AxiosInstance,
   instanceObjectAPI: GroupedInstanceObjectAPI,
@@ -33,6 +34,7 @@ export function addInstanceGroup(
   );
 }
 
+// instance method 분류
 function addInstanceMethod(
   instance: AxiosInstance,
   instanceObjectAPI: MethodInstanceObjectAPI,
@@ -52,6 +54,7 @@ function addInstanceMethod(
   );
 }
 
+// 그룹화와 method 분류
 export function addInstanceGroupMethod(
   instance: AxiosInstance,
   instanceObjectAPI: GroupedMethodInstanceObjectAPI,

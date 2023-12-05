@@ -1,5 +1,5 @@
 export const LINK = {
-  SPLASH: '/',
+  SPLASH: '/splash',
   MAIN: '/main',
   LOGIN: '/login',
   SIGNUP: '/signup',
