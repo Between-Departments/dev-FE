@@ -9,14 +9,12 @@ import {
   EditMajorInterface,
 } from '@/types/user';
 
-export const getToken = async (data: LoginDataInterface) => {
+export const getToken = async (data: LoginDataInterface): Promise<string> => {
   const response = await httpClient.members.post.login(data);
-  const token = response.headers['authorization'];
-
-  return token;
+  return response.headers['authorization'];
 };
 
-export const postLogout = async () => {
+export const postLogout = async (): Promise<void> => {
   await httpClient.members.post.logout();
 };
 
