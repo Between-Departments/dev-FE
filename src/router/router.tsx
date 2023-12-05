@@ -4,6 +4,7 @@ import { LINK } from '@/constants/links';
 import Layout from '@/layout/Layout';
 import ProtectedRoute from './ProtectedRoute';
 import AuthenticatedRoute from './AuthenticatedRoute';
+import AdminRoute from './AdminRoute';
 import HomePage from '@/pages/HomePage';
 import LoginPage from '@/pages/auth/LoginPage';
 import SignUpPage from '@/pages/auth/SignUpPage';
@@ -131,6 +132,32 @@ const routes = [
           { path: LINK.CHAT, element: <ChatPage />, meta: { hideFloatNav: true } },
         ],
       },
+      {
+        path: '',
+        element: <AdminRoute />,
+        children: [
+          {
+            path: LINK.ADMIN_DECLARE,
+            element: <DeclarePage />,
+            meta: { hideFloatNav: true },
+          },
+          {
+            path: LINK.ADMIN_ACCOUNT,
+            element: <AccountPage />,
+            meta: { hideFloatNav: true },
+          },
+          {
+            path: LINK.ADMIN_DECLARE_POST,
+            element: <DeclarePostPage />,
+            meta: { hideFloatNav: true },
+          },
+          {
+            path: LINK.ADMIN_DECLARE_REPLY,
+            element: <DeclareReplyPage />,
+            meta: { hideFloatNav: true },
+          },
+        ],
+      },
       { path: LINK.MAIN, element: <MainPage /> },
       {
         path: LINK.POST_FREE,
@@ -145,15 +172,7 @@ const routes = [
         element: <PostDetailPage />,
         meta: { hideNavBar: true, hideFloatNav: true },
       },
-      {
-        path: LINK.ADMIN_DECLARE_REPLY,
-        element: <DeclareReplyPage />,
-        meta: { hideFloatNav: true },
-      },
       { path: LINK.SEARCH, element: <SearchPage /> },
-      { path: LINK.ADMIN_DECLARE, element: <DeclarePage />, meta: { hideFloatNav: true } },
-      { path: LINK.ADMIN_ACCOUNT, element: <AccountPage />, meta: { hideFloatNav: true } },
-      { path: LINK.ADMIN_DECLARE_POST, element: <DeclarePostPage />, meta: { hideFloatNav: true } },
     ],
   },
 ];
