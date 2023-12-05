@@ -2,7 +2,7 @@ import SockJS from 'sockjs-client';
 import { Client, StompSubscription } from '@stomp/stompjs';
 import { NotificationData } from '@/types/notification';
 import { URL } from '@/constants/url';
-import { useNotificationStore } from '@/store/notificateStore';
+import { useAddNotification, useSetHasPendingNotifications } from '@/store/notificateStore';
 import { useChatMessageStore } from '@/store/chatMessageStore';
 
 export class WebSocketService {
@@ -33,8 +33,8 @@ export class WebSocketService {
       if (message.body) {
         const notification: NotificationData = JSON.parse(message.body);
 
-        useNotificationStore.getState().addNotification(notification);
-        useNotificationStore.getState().setHasPendingNotifications(true);
+        useAddNotification()(notification);
+        useSetHasPendingNotifications()(true);
         if (notification.type === 'CHAT_MESSAGE') {
           useChatMessageStore.getState().setNewChatNotification(true);
         }
