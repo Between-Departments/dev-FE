@@ -19,8 +19,8 @@ const findRouteByPath = (
   routes: ExtendedRouteObject[],
 ): ExtendedRouteObject | null => {
   for (const route of routes) {
-    // 정확한 경로 일치를 확인
-    if (route.path === path) {
+    const routePathRegex = new RegExp('^' + route.path?.replace(/:\w+/g, '\\w+') + '$');
+    if (routePathRegex.test(path)) {
       return route;
     }
     // 중첩된 라우트가 있는 경우
