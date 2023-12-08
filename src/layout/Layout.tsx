@@ -6,6 +6,7 @@ import { colors } from '../constants/colors';
 import BottomNavBar from './BottomNavBar';
 import FloatingNav from './FloatingNav';
 import GlobalModal from '@/components/public/modal/GlobalModal';
+
 interface ExtendedRouteObject extends Omit<RouteObject, 'children'> {
   meta?: {
     hideNavBar?: boolean;
