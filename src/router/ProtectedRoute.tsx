@@ -1,10 +1,10 @@
 import React from 'react';
 import { LINK } from '@/constants/links';
 import { Navigate, Outlet } from 'react-router-dom';
-import useAuthStore from '@/store/authStore';
+import { useAuthToken } from '@/store/authStore';
 
 const ProtectedRoute = () => {
-  const isAuth = useAuthStore((state) => state.token);
+  const isAuth = useAuthToken();
 
   return isAuth ? <Outlet /> : <Navigate to={LINK.LOGIN} replace />;
 };
