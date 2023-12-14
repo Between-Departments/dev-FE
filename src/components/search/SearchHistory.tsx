@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { truncateContent } from '../../utils/post';
+import { truncateContent } from '../../utils/post/post';
 import DeleteIcon from '../../public/images/ui/delete_icon.svg';
 import { colors } from '@/constants/colors';
 import { scrollNone } from '@/styles/styles';
