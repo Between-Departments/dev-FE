@@ -40,4 +40,4 @@ export const POST_FILTER_LIST = [
   { id: 2, content: '오래된순', sortBy: 'createAt', direction: 'ASC' },
   { id: 3, content: '추천순', sortBy: 'recommendCount', direction: 'DESC' },
   { id: 4, content: '조회순', sortBy: 'viewCount', direction: 'DESC' },
-];
+] as const;
