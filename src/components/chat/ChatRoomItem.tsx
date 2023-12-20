@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ChatRoomInterface } from '../../types/chat';
 import { colors } from '@/constants/colors';
 import DefaultProfile from '@/public/images/default_profile.svg';
-import { formatTimeAgo } from '@/utils/post';
+import { formatTimeAgo } from '@/utils/post/post';
 import MessageNickname from './MessageNickname';
 import DeleteIcon from '@/public/images/ui/delete_fill.svg';
 import useModalStore from '@/store/modalStore';

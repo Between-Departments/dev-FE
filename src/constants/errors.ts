@@ -12,4 +12,4 @@ export const errorMessages = [
   { path: LINK.NOTIFICATION, message: '새로운 알림이 없어요' },
   { path: LINK.ADMIN_DECLARE, message: '신고 내용이 없어요' },
   { path: LINK.ADMIN_ACCOUNT, message: '해당 사용자가 없어요' },
-];
+] as const;

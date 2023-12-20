@@ -23,8 +23,8 @@ export class WebSocketService {
       },
     });
 
-    this.client.onStompError = (err) => {
-      console.error('STOMP 에러 : ', err);
+    this.client.onStompError = (error) => {
+      console.error('STOMP 에러 : ', error);
     };
   }
 
