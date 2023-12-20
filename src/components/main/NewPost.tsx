@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { PostInterface } from '../../types/post';
 import { useNavigate } from 'react-router-dom';
 import { LINK } from '../../constants/links';
-import { formatTimeAgo } from '../../utils/post';
+import { formatTimeAgo } from '../../utils/post/post';
 import { colors } from '@/constants/colors';
 import { majorToKoreaMapping } from '@/constants/majorCategory';
 import { Footer } from '@/styles/post';

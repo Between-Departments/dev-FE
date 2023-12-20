@@ -1,6 +1,6 @@
 import React from 'react';
 import { PostProps } from '../../types/post';
-import { formatTime } from '../../utils/post';
+import { formatTime } from '../../utils/post/post';
 import PostCountBox from './postItem/PostCountBox';
 import PostImagesBoxMedium from './postItem/PostImagesBoxMedium';
 import { colors } from '@/constants/colors';

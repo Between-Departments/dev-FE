@@ -6,7 +6,7 @@ import { MODAL_TYPES } from '@/types/modal';
 import { deleteAccount, lockAccount } from '@/services/admin';
 import { AccountInterface } from '@/types/admin';
 import ProfileBox from '@/components/post/postItem/ProfileBox';
-import { formatTime } from '@/utils/post';
+import { formatTime } from '@/utils/post/post';
 import toast from 'react-hot-toast';
 
 const AccountItem = ({
