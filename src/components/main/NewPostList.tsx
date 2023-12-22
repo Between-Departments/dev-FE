@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NewPost from './NewPost';
 import { colors } from '@/constants/colors';
 import useMainPosts from '@/hooks/useMainPosts';
+import ErrorContent from '../public/ErrorContent';
 
 const NewPostList = () => {
   const { dailyHotPosts } = useMainPosts();
@@ -10,6 +11,7 @@ const NewPostList = () => {
   return (
     <Layout>
       <PostListLayout>
+        {dailyHotPosts?.length === 0 && <ErrorContent style={{ padding: '0' }} type='dailyHot' />}
         {dailyHotPosts?.map((post) => <NewPost post={post} key={post.postId} />)}
       </PostListLayout>
     </Layout>

@@ -4,9 +4,12 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import { colors } from '@/constants/colors';
 import useMainPosts from '@/hooks/useMainPosts';
+import ErrorContent from '../public/ErrorContent';
 
 const PopularPostList = () => {
   const { weeklyHotPosts } = useMainPosts();
+
+  if (weeklyHotPosts?.length === 0) return <ErrorContent style={{ padding: '5rem' }} />;
 
   return (
     <Layout>

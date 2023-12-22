@@ -6,18 +6,23 @@ import { useLocation } from 'react-router-dom';
 import { errorMessages } from '@/constants/errors';
 import { imageStyle } from '@/styles/styles';
 
-const ErrorContent = () => {
+interface ErrorContentProps {
+  style?: React.CSSProperties;
+  type?: string;
+}
+
+const ErrorContent = ({ style, type }: ErrorContentProps) => {
   const location = useLocation();
   const errorMessage: string =
     errorMessages.find((e) => location.pathname.includes(e.path))?.message ||
     errorMessages[0].message;
 
   return (
-    <Layout>
+    <Layout style={style}>
       <ImageWrapper>
         <img src={ErrorImage} alt='error_image' />
       </ImageWrapper>
-      <Text>{errorMessage}</Text>
+      {type === 'dailyHot' ? <Text>오늘의 인기 게시글이 없어요</Text> : <Text>{errorMessage}</Text>}
     </Layout>
   );
 };
