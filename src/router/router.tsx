@@ -173,6 +173,7 @@ const routes = [
         meta: { hideNavBar: true, hideFloatNav: true },
       },
       { path: LINK.SEARCH, element: <SearchPage /> },
+      { path: '/*', element: <Navigate to='/' replace /> },
     ],
   },
 ];
